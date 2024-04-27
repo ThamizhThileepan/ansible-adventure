@@ -1,0 +1,6 @@
+- name: install "{{ webserver }}"
+  vars:
+    webserver: httpd
+  apt:
+    name: "{{ webserver }}"
+    state: latest

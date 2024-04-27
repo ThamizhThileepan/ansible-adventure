@@ -1,0 +1,5 @@
+- name: copy files
+  become_user: root
+  copy:
+    content: "This is a playbook"
+    dest: /root/txt

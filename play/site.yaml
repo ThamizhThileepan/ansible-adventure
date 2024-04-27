@@ -1,0 +1,7 @@
+- name: play
+  hosts: all
+  tasks:
+  - name: copy file
+    include_tasks: tasks/copy.yaml
+  - name: install "{{ webserver }}"
+    include_tasks: tasks/install.yaml
