@@ -1,6 +1,7 @@
 - name: install "{{ webserver }}"
   vars:
-    webserver: httpd
+    webserver: apache2
   apt:
     name: "{{ webserver }}"
     state: latest
+    update_cache: yes

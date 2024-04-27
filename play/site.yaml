@@ -1,7 +1,7 @@
 - name: play
   hosts: all
   tasks:
-  - name: copy file
+  - name: include copy playbook
     include_tasks: tasks/copy.yaml
-  - name: install "{{ webserver }}"
-    include_tasks: tasks/install.yaml
+  - name: include install "{{ webserver }}" playbook
+    include_tasks: tasks/install_webserver.yaml

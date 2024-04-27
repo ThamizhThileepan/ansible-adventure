@@ -1,0 +1,9 @@
+- hosts: all
+  become: yes
+  vars_files:
+  - secret.yaml
+  tasks:
+  - name: create user
+    user:
+      name: "{{ username }}"
+      password: "{{ password }}"
