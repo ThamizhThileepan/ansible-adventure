@@ -1,0 +1,7 @@
+- name: create user
+  become: yes
+  vars_file:
+  - secret.yaml
+  user:
+    name: "{{ username }}"
+    password: "{{ password }}"
