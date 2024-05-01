@@ -1,0 +1,12 @@
+- name: Validate and start
+  hosts: all
+  tasks:
+  - name: Get the status of apache2
+    command: /usr/bin/systemctl is-failed apache2
+    ignore_errors: yes
+    register: result
+  - name: start apache2 if its down
+    service:
+      name: apache2
+      state: restarted
+    when: result.rc == 1
