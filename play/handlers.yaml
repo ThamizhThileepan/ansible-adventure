@@ -1,0 +1,19 @@
+- name: Handlers play
+  hosts: all
+  ingore_errors: yes
+  tasks:
+  - name: copy index
+    copy:
+      src: /tmp/index2.html
+      dest: /var/www/html
+    notify:
+    - restart_web
+  - name: Copy nothing
+    copy:
+      src: /tmp/nothing
+      dest: /var/www/html
+  handlers:
+  - name: restart webserver
+    service:
+      name: apache2
+      state: restarted

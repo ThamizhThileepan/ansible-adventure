@@ -14,8 +14,8 @@
       name: apache2
       state: stopped
     when: >
-      ( ansible_free_mem < 200 )
+      ( ansible_memfree_mb < 200 )
       or 
       ( mount == "/" and
-        size_available < 7333851712 )
+        mount.size_available < 7333851712 )
       
