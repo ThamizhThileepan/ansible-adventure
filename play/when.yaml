@@ -1,0 +1,21 @@
+- name: when usages
+  hosts: all
+  tasks:
+  - name: Install apache2
+    package:
+      name: apache2
+      state: present
+      update_cache: yes
+    when:
+      ansible_distribution: "Ubuntu"
+      ansible_version: "22.04"
+  - name: Service stop
+    service:
+      name: apache2
+      state: stopped
+    when: >
+      ( ansible_free_mem < 200 )
+      or 
+      ( mount == "/" and
+        size_available < 7333851712 )
+      
