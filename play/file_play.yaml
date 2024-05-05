@@ -1,0 +1,30 @@
+- name: Play File modules
+  hosts: all
+  tasks:
+  - name: copy hosts to all hosts
+    copy:
+      src: /etc/hosts
+      dest: /tmp
+  - name: Add lines to /tmp/hosts
+    blockinfile:
+     path: /tmp/hosts
+     block: |
+      10.167.256.18 example.com
+      10.156.356.67 example2.com
+     state: present
+  - name: verify checksum of /tmp/hosts
+    stat:
+      path: /tmp/hosts
+      checksum_algorithm: md5
+    register: result
+  - debug:
+      msg: The checksum of files are "{{ result.stat.checksum }}"
+  - name: fetch the files
+    fetch:
+      src: /tmp/hosts
+      dest: /tmp
+  - name: Archive folders or files
+    archive:
+      path: /tmp/hosts02
+      dest: /tmp/hosts.gz
+      format: gz
